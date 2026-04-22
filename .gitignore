@@ -1,0 +1,28 @@
+# Build folders
+/build/
+/build_local/
+
+# In-source CMake artifacts
+/CMakeCache.txt
+/CMakeFiles/
+/Makefile
+/cmake_install.cmake
+/compile_commands.json
+
+/server/CMakeFiles/
+/server/Makefile
+/server/cmake_install.cmake
+/server/libweb_htop_server_core.a
+
+/client/CMakeFiles/
+/client/Makefile
+/client/cmake_install.cmake
+/client/libweb_htop_client_core.a
+
+/common/CMakeFiles/
+/common/Makefile
+/common/cmake_install.cmake
+
+/tests/CMakeFiles/
+/tests/Makefile
+/tests/cmake_install.cmake
