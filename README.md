@@ -7,6 +7,8 @@
 - Server pushes live snapshots over streaming TCP.
 - Client connects to streaming server and renders terminal dashboard + process table.
 
+<img width="724" height="541" alt="image" src="https://github.com/user-attachments/assets/86f82031-c65d-4d8f-bb8f-9c6b28b9b035" />
+
 ## Build
 
 ```bash
