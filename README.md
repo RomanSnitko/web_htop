@@ -1,6 +1,10 @@
 # web_htop
 
-Проект Web Htop представляет собой многослойную высокопроизводительную клиент-серверную систему мониторинга, реализующую сбор, агрегацию и потоковую доставку системных метрик в реальном времени. Серверная часть, построенная на низкоуровневом взаимодействии с Linux-подсистемой /proc, инкапсулирует набор специализированных collectors, формирующих консистентный snapshot состояния системы (CPU, память, сеть, диск, процессы) с временной синхронизацией и вычислением производных метрик. Центральный компонент SharedState обеспечивает потокобезопасный доступ к актуальным данным, выступая в роли in-memory data layer. Поверх него реализован транспортный уровень, включающий асинхронный HTTP API с маршрутизацией и обработчиками, а также streaming-механизм для непрерывной передачи телеметрии по TCP. Клиентская часть использует эти интерфейсы для визуализации и анализа, формируя интерактивное представление состояния системы. Архитектура проекта демонстрирует принципы модульности, изоляции ответственности и эффективной работы с системными ресурсами, приближаясь по сложности к production-grade observability решениям.
+The server collects system state directly from the Linux /proc filesystem through dedicated collectors responsible for CPU, memory, network, disk, and process metrics. Collectors produce synchronized system snapshots and calculate derived metrics where required. The collected state is stored in a shared in-memory data layer that provides thread-safe access to the latest snapshot for concurrent consumers.
+
+The transport layer exposes two interfaces: an asynchronous HTTP API for querying health, system metrics, and process information, and a TCP streaming channel for continuous delivery of live snapshots. The client consumes the streaming data and renders it as a terminal dashboard with system and process views.
+
+The project separates metric collection, state management, transport, and presentation into independent components, allowing the data acquisition layer to operate independently from network clients and presentation logic. The implementation focuses on Linux system interfaces, concurrent access to shared state, asynchronous I/O, and continuous telemetry delivery.
 
 - Server collects Linux metrics and process list.
 - Server exposes HTTP API (`/health`, `/metrics`, `/processes`).
