@@ -4,6 +4,7 @@
 #include <charconv>
 #include <fcntl.h>
 #include <filesystem>
+#include <string_view>
 #include <sys/stat.h>
 #include <unistd.h>
 
@@ -20,7 +21,7 @@ FileResult Read(std::string const& path)
         return {{}, errno};
     }
     FileResult result;
-    std::array<char, 8192> buffer{};
+    std::array<char, 8192> buffer;
 
     for (;;)
     {
@@ -65,6 +66,7 @@ FileResult LinuxSource::Cgroup(std::string const& relative) const
 PidList LinuxSource::Pids() const
 {
     PidList result;
+    result.pids.reserve(config_.max_processes);
     std::error_code ec;
     std::filesystem::directory_iterator it(config_.proc_root, ec), end;
 
@@ -79,7 +81,19 @@ PidList LinuxSource::Pids() const
             result.error = ec.value();
             break;
         }
-        auto name = it->path().filename().string();
+
+        // Avoid allocating temporary std::filesystem::path and std::string objects
+        // by viewing the filename substring directly within the iterator's native path.
+        std::string_view const path_str = it->path().native();
+        auto const slash_pos = path_str.rfind('/');
+        std::string_view const name =
+            (slash_pos == std::string_view::npos) ? path_str : path_str.substr(slash_pos + 1);
+
+        if (name.empty() || name[0] < '0' || name[0] > '9')
+        {
+            continue;
+        }
+
         int pid{};
         auto [last, error] = std::from_chars(name.data(), name.data() + name.size(), pid);
 
