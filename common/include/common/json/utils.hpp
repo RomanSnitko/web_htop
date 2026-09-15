@@ -9,8 +9,7 @@
  * and model serialization logic without external JSON dependencies.
  */
 
-#ifndef WEB_HTOP_COMMON_JSON_UTILS_HPP_
-#define WEB_HTOP_COMMON_JSON_UTILS_HPP_
+#pragma once
 
 #include <cstddef>     // std::size_t
 #include <cstdint>     // std::int64_t, std::uint64_t
@@ -313,5 +312,3 @@ class JSONValue
 };
 
 } // namespace web_htop::json::utils
-
-#endif // WEB_HTOP_COMMON_JSON_UTILS_HPP_

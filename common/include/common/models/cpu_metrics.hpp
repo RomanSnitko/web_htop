@@ -9,8 +9,7 @@
  * collectors and protocol messages, including serialization helpers.
  */
 
-#ifndef WEB_HTOP_COMMON_MODELS_CPU_METRICS_HPP_
-#define WEB_HTOP_COMMON_MODELS_CPU_METRICS_HPP_
+#pragma once
 
 #include <cstdint> // std::uint64_t for jiffies counters
 #include <vector>  // std::vector for per-core usage
@@ -51,5 +50,3 @@ struct CPUMetrics
 };
 
 } // namespace web_htop::models
-
-#endif // WEB_HTOP_COMMON_MODELS_CPU_METRICS_HPP_

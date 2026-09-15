@@ -10,11 +10,8 @@
  * Include this file when you need a compact "base config" dependency.
  */
 
-#ifndef WEB_HTOP_COMMON_CONFIG_HPP_
-#define WEB_HTOP_COMMON_CONFIG_HPP_
+#pragma once
 
 #include "common/constants.hpp" ///< Shared project constants.
 #include "common/enums.hpp"     ///< Shared project enumerations.
 #include "common/types.hpp"     ///< Shared project type aliases.
-
-#endif // WEB_HTOP_COMMON_CONFIG_HPP_

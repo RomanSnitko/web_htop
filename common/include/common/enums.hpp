@@ -9,8 +9,7 @@
  * such as process states and other.
  */
 
-#ifndef WEB_HTOP_COMMON_ENUMS_HPP_
-#define WEB_HTOP_COMMON_ENUMS_HPP_
+#pragma once
 
 namespace web_htop
 {
@@ -34,5 +33,3 @@ enum class ProcessState : char
 };
 
 } // namespace web_htop
-
-#endif // WEB_HTOP_COMMON_ENUMS_HPP_

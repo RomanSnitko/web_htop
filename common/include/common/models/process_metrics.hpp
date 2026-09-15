@@ -9,8 +9,7 @@
  * conversion helpers.
  */
 
-#ifndef WEB_HTOP_COMMON_MODELS_PROCESS_METRICS_HPP_
-#define WEB_HTOP_COMMON_MODELS_PROCESS_METRICS_HPP_
+#pragma once
 
 #include <cstdint> // std::uint64_t
 #include <string>  // std::string
@@ -82,5 +81,3 @@ struct ProcessMetrics
 };
 
 } // namespace web_htop::models
-
-#endif // WEB_HTOP_COMMON_MODELS_PROCESS_METRICS_HPP_

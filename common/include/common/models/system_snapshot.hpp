@@ -9,8 +9,7 @@
  * structure with JSON conversion helpers.
  */
 
-#ifndef WEB_HTOP_COMMON_MODELS_SYSTEM_SNAPSHOT_HPP_
-#define WEB_HTOP_COMMON_MODELS_SYSTEM_SNAPSHOT_HPP_
+#pragma once
 
 #include "common/json/utils.hpp"
 #include "common/models/cpu_metrics.hpp"
@@ -56,5 +55,3 @@ struct SystemSnapshot
 };
 
 } // namespace web_htop::models
-
-#endif // WEB_HTOP_COMMON_MODELS_SYSTEM_SNAPSHOT_HPP_

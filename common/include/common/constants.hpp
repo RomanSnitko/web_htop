@@ -9,8 +9,7 @@
  * It currently contains Linux `/proc` filesystem paths used by collectors.
  */
 
-#ifndef WEB_HTOP_COMMON_CONSTANTS_HPP_
-#define WEB_HTOP_COMMON_CONSTANTS_HPP_
+#pragma once
 
 #include <string_view> // std::string_view for constant string paths
 
@@ -35,5 +34,3 @@ constexpr std::string_view UPTIME = "/proc/uptime";   ///< Path to system uptime
 } // namespace proc
 
 } // namespace web_htop
-
-#endif // WEB_HTOP_COMMON_CONSTANTS_HPP_

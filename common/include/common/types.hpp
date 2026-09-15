@@ -9,8 +9,7 @@
  * percentages, frequencies, and resource metrics.
  */
 
-#ifndef WEB_HTOP_COMMON_TYPES_HPP_
-#define WEB_HTOP_COMMON_TYPES_HPP_
+#pragma once
 
 #include <cstdint>     // Fixed-width integer types (std::uint64_t, std::uint32_t)
 #include <sys/types.h> // pid_t for process IDs
@@ -32,5 +31,3 @@ using CPUCores = std::uint32_t; ///< Number of CPU cores
 using ProcessID = pid_t;        ///< PID type
 
 } // namespace web_htop
-
-#endif // WEB_HTOP_COMMON_TYPES_HPP_

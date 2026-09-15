@@ -9,8 +9,7 @@
  * and provides JSON conversion helpers.
  */
 
-#ifndef WEB_HTOP_COMMON_MODELS_MEMORY_METRICS_HPP_
-#define WEB_HTOP_COMMON_MODELS_MEMORY_METRICS_HPP_
+#pragma once
 
 #include "common/json/utils.hpp"
 #include "common/types.hpp"
@@ -46,5 +45,3 @@ struct MemoryMetrics
 };
 
 } // namespace web_htop::models
-
-#endif // WEB_HTOP_COMMON_MODELS_MEMORY_METRICS_HPP_
