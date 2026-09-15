@@ -196,6 +196,7 @@ TEST(SerializationTest, VerifyProcessInfoToJsonAndFromJson)
 {
     web_htop::models::ProcessInfo process{};
     process.pid = 4242;
+    process.ppid = 1;
     process.name = "web_htop_worker";
     process.state = web_htop::ProcessState::RUNNING;
     process.cpu_percent = 11.75;
@@ -207,6 +208,7 @@ TEST(SerializationTest, VerifyProcessInfoToJsonAndFromJson)
     ASSERT_TRUE(json.IsObject());
     ASSERT_TRUE(json.HasField("starttime_ticks"));
     ASSERT_TRUE(json.HasField("cpu_valid"));
+    ASSERT_TRUE(json.HasField("ppid"));
 
     auto name = json["name"];
     ASSERT_TRUE(name.has_value());
@@ -220,6 +222,7 @@ TEST(SerializationTest, VerifyProcessInfoToJsonAndFromJson)
 
     auto const restored = web_htop::models::ProcessInfo::FromJson(json);
     EXPECT_EQ(restored.pid, process.pid);
+    EXPECT_EQ(restored.ppid, process.ppid);
     EXPECT_EQ(restored.name, process.name);
     EXPECT_EQ(restored.state, process.state);
     EXPECT_DOUBLE_EQ(restored.cpu_percent, process.cpu_percent);

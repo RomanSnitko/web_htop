@@ -16,6 +16,7 @@ using CpuSample = std::map<int, CpuTimes>; // -1 is the aggregate; other keys ar
 struct ProcessSample
 {
     int pid{};
+    int ppid{};
     std::string name;
     char state{};
     std::uint64_t ticks{}, starttime{}, rss_pages{};

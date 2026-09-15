@@ -304,6 +304,7 @@ void MetricsCollector::Processes(models::SystemSnapshot& s, std::stop_token stop
         }
         models::ProcessInfo info;
         info.pid = pid;
+        info.ppid = p->ppid;
         info.name = p->name;
         info.state = static_cast<ProcessState>(p->state);
         info.starttime_ticks = p->starttime;

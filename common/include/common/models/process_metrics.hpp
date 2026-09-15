@@ -33,6 +33,7 @@ struct ProcessInfo
     std::uint64_t starttime_ticks{};
     bool cpu_valid{};
     ProcessID pid{};                           ///< Process identifier
+    ProcessID ppid{};                          ///< Parent process identifier
     std::string name{};                        ///< Process name (comm)
     ProcessState state{ProcessState::UNKNOWN}; ///< Process state from `/proc/[pid]/stat`
     Percentage cpu_percent{};                  ///< CPU usage: one fully busy core is 100%

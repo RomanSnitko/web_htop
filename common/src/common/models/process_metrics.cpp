@@ -20,9 +20,10 @@ namespace web_htop::models
 json::utils::JSONValue ProcessInfo::ToJson() const
 {
     json::utils::JSONObject object{};
-    object.reserve(9);
+    object.reserve(10);
     json::Add(object, "starttime_ticks", starttime_ticks);
     json::Add(object, "cpu_valid", cpu_valid);
+    json::Add(object, "ppid", static_cast<std::int64_t>(ppid));
 
     object.emplace_back("pid", json::utils::JSONValue(static_cast<std::int64_t>(pid)));
     object.emplace_back("name", json::utils::JSONValue(std::string_view(name)));
@@ -43,6 +44,13 @@ ProcessInfo ProcessInfo::FromJson(json::utils::JSONValue const& value)
     info.starttime_ticks = json::UInt(value, "starttime_ticks").value_or(0);
     info.cpu_valid = json::Boolean(value, "cpu_valid");
 
+    if (auto ppid = value["ppid"])
+    {
+        if (auto parsed = ppid->get().AsInt64())
+        {
+            info.ppid = static_cast<ProcessID>(*parsed);
+        }
+    }
     if (auto pid = value["pid"])
     {
         if (auto parsed = pid->get().AsInt64())

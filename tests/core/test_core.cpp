@@ -193,7 +193,8 @@ void TestJsonOwnershipAndLimits()
 
 void TestCpu()
 {
-    auto sample = ParseCpu("cpu  10\t20  30 40 50 60 70 80 9000 9000\r\n\ncpu7 1 2 3 4 5 6 7 8  \n");
+    auto sample =
+        ParseCpu("cpu  10\t20  30 40 50 60 70 80 9000 9000\r\n\ncpu7 1 2 3 4 5 6 7 8  \n");
     CHECK(sample.size() == 2);
     CHECK(sample.contains(7));
     CHECK(sample[-1][7] == 80);
@@ -210,6 +211,7 @@ void TestProcessParser()
     auto p = ParseProcess(Stat(42, 120, 77, "a tricky ) name\nwith newline"));
     CHECK(p);
     CHECK(p->pid == 42);
+    CHECK(p->ppid == 1);
     CHECK(p->ticks == 120);
     CHECK(p->starttime == 77);
     CHECK(p->threads == 2);
