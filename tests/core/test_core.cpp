@@ -282,6 +282,11 @@ void TestHttp()
     CHECK(ParseHttpRequest("GET / HTTP/1.1\r\nHost: h\r\nTransfer-Encoding: chunked\r\n\r\n")
               .status == 400);
     CHECK(ParseHttpRequest("GET / HTTP/1.1\r\nHost: h\r\nHost: x\r\n\r\n").status == 400);
+    auto query_req =
+        ParseHttpRequest("GET /processes?filter=web HTTP/1.1\r\nHost: localhost\r\n\r\n");
+    CHECK(query_req.status == 200);
+    CHECK(query_req.path == "/processes");
+    CHECK(query_req.query == "filter=web");
 }
 
 void TestPublication()

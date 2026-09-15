@@ -129,7 +129,10 @@ HttpRequest ParseHttpRequest(std::string_view text)
             return bad();
         }
     }
-    return {200, std::move(target)};
+    auto q = target.find('?');
+    std::string path = (q == std::string::npos) ? target : target.substr(0, q);
+    std::string query = (q == std::string::npos) ? "" : target.substr(q + 1);
+    return {200, std::move(target), std::move(path), std::move(query)};
 }
 
 std::string HttpResponse(unsigned status, std::string_view body, std::string_view type)
