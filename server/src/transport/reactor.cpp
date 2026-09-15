@@ -359,9 +359,7 @@ std::string Reactor::Diagnostics(bool prometheus) const
     }
     json::Object o;
 
-    struct rusage usage
-    {
-    };
+    struct rusage usage{};
 
     if (::getrusage(RUSAGE_SELF, &usage) == 0)
     {

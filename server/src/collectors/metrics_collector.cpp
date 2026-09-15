@@ -527,9 +527,7 @@ void MetricsCollector::Disk(models::SystemSnapshot& s)
 
 void MetricsCollector::Filesystem(models::SystemSnapshot& s)
 {
-    struct statvfs st
-    {
-    };
+    struct statvfs st{};
 
     int ec = source_->Filesystem(st);
 

@@ -174,8 +174,7 @@ std::optional<ProcessSample> ParseProcess(std::string_view text)
     std::int64_t rss{};
 
     if (fields[0].size() != 1 || !Parse(fields[11], user) || !Parse(fields[12], system) ||
-        !Parse(fields[17], s.threads) || !Parse(fields[19], s.starttime) ||
-        !Parse(fields[21], rss))
+        !Parse(fields[17], s.threads) || !Parse(fields[19], s.starttime) || !Parse(fields[21], rss))
     {
         return std::nullopt;
     }
@@ -221,8 +220,7 @@ models::PressureMetrics ParsePressure(std::string resource, std::string_view tex
             auto key = token.substr(0, equal);
             double n{};
 
-            if (!Parse(token.substr(equal + 1), n) || !std::isfinite(n) ||
-                n < 0 || n > 100)
+            if (!Parse(token.substr(equal + 1), n) || !std::isfinite(n) || n < 0 || n > 100)
             {
                 continue;
             }

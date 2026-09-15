@@ -23,9 +23,7 @@ int ClientApp::Run()
 {
     stopped = 0;
 
-    struct sigaction action
-    {
-    }, old_int{}, old_term{};
+    struct sigaction action{}, old_int{}, old_term{};
 
     action.sa_handler = OnSignal;
     ::sigemptyset(&action.sa_mask);

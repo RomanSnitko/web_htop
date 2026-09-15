@@ -102,9 +102,7 @@ int LinuxSource::Filesystem(struct statvfs& result) const
 
 std::string LinuxSource::CgroupIdentity() const
 {
-    struct stat st
-    {
-    };
+    struct stat st{};
 
     if (::stat(config_.cgroup_path.c_str(), &st) != 0)
     {
