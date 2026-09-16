@@ -6,7 +6,7 @@
 One Linux sampler, many independent observers, and no screenshot archaeology.
 
 <p>
-  <img src="https://img.shields.io/badge/C%2B%2B-20-3f4550?style=flat&logo=cplusplus&logoColor=c9d1d9" alt="C++20">
+  <img src="https://img.shields.io/badge/C%2B%2B-20-3f4550?style=flat&logo=cplusplus&logoColor=c9d1d9" alt="C++26">
   <img src="https://img.shields.io/badge/platform-Linux-3f4550?style=flat&logo=linux&logoColor=c9d1d9" alt="Linux">
   <a href="https://github.com/RomanSnitko/web_htop/actions/workflows/ci.yml"><img src="https://img.shields.io/badge/CI-GCC%20%7C%20Clang-3f4550?style=flat&logo=githubactions&logoColor=c9d1d9" alt="CI"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-3f4550?style=flat" alt="MIT"></a>
