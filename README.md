@@ -23,14 +23,20 @@ It is not htop with a socket bolted onto it. Collection, publication,
 transport, rendering, and replay have separate ownership and failure domains.
 
 ```cpp
-web_htop {
-    host {
-        sampler[jthread] {
+// architecture pseudocode :)
+web_htop
+{
+    host
+    {
+        sampler[jthread]
+        {
             procfs + sysfs + PSI + cgroup_v2;
             zero_allocation_parsers -> generation<N>;
         }
 
-        publication[SPMC] {
+        // transfer a snapsh. between threads
+        publication[SPMC]
+        {
             immutable_snapshots;
             lock_free_handoff;
             hazard_pointer_reclamation;
@@ -38,7 +44,9 @@ web_htop {
             encode_once;
         }
 
-        reactor[epoll] {
+        // network part
+        reactor[epoll]
+        {
             eventfd + timerfd + signalfd;
             TCP  -> framed_JSON -> observers[*];
             HTTP -> { health, ready, metrics, processes, diagnostics, exporter };
@@ -46,7 +54,9 @@ web_htop {
         }
     }
 
-    observer[*] {
+    // consumers
+    observer[*]
+    {
         TUI | curl | Prometheus | record(JSONL) -> replay;
     }
 }
