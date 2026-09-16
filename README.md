@@ -2,7 +2,7 @@
 
 <img width="2172" height="724" alt="ChatGPT Image 15 сент  2026 г , 16_23_21" src="https://github.com/user-attachments/assets/cd269fb5-0988-4aea-ab27-31f8cb3104cc" />
 
-### One Linux host. Many observers. No screenshot archaeology.
+### One Linux host. One collection pipeline. Many observers. Replay what happened - no screenshot archaeology.
 
 A C++20 telemetry server and terminal console for watching Linux systems live -
 locally, over SSH, from several terminals, or through machine-readable APIs.
