@@ -325,9 +325,13 @@ limits, numeric semantics, string lifetime and validation rules remain aligned
 with the telemetry model rather than being inherited from a general-purpose
 dependency.
 
-## Engineering notes
+### Concurrency and Ownership Model
 
-to be continued...
+WEB HTOP strictly decouples metric sampling from client I/O using a single-writer, lock-free snapshot publication model:
+
+- **Ownership Separation:** The telemetry sampler (`std::jthread`) owns `/proc` parsers, device state, and delta history. The network reactor (`epoll`) owns sockets, event notifications, and transmission queues.
+- **Immutable Generations:** Each sampling tick serializes and frames a full `SystemSnapshot` into an immutable `PublishedSnapshot`. The reactor acquires this state via release-acquire semantics with zero mutex locks.
+- **Latest-Wins Backpressure:** Connected sessions retain a bounded output buffer (one in-flight frame, one pending frame). Slow TCP observers never block the sampling worker or other connected dashboards.
 
 
 ## Tests and measurements
