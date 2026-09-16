@@ -1,6 +1,6 @@
 <div align="center">
 
-<img width="2172" height="724" alt="web-htop-banner-transparent" src="https://github.com/user-attachments/assets/ce16aeda-339f-4399-b063-23765c8af081" />
+<img width="2172" height="724" alt="ChatGPT Image 16 сент  2026 г , 13_41_59" src="https://github.com/user-attachments/assets/41763a10-4e2e-4e10-9991-30f218d654c0" />
 
 ### One Linux host. One collection pipeline. Many observers. Replay what happened - no screenshot archaeology.
 
