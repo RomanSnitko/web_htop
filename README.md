@@ -28,6 +28,7 @@ web_htop
 {
     host
     {
+        // metrics collection
         sampler[jthread]
         {
             procfs + sysfs + PSI + cgroup_v2;
@@ -35,7 +36,7 @@ web_htop
         }
 
         // transfer a snapsh. between threads
-        publication[SPMC]
+        publication[SPMC] // engineering flex
         {
             immutable_snapshots;
             lock_free_handoff;
