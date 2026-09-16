@@ -551,10 +551,33 @@ void MetricsCollector::Filesystem(models::SystemSnapshot& s)
 
 void MetricsCollector::Load(models::SystemSnapshot& s)
 {
-    std::istringstream input(Require(source_->Proc("loadavg")));
+    auto text = Require(source_->Proc("loadavg"));
+    std::string_view sv = text;
     s.loadavg.timestamp = s.timestamp;
 
-    if (!(input >> s.loadavg.load_1m >> s.loadavg.load_5m >> s.loadavg.load_15m))
+    auto parse_next = [](std::string_view& v, double& out) -> bool
+    {
+        while (!v.empty() && std::isspace(static_cast<unsigned char>(v.front())))
+        {
+            v.remove_prefix(1);
+        }
+        if (v.empty())
+        {
+            return false;
+        }
+        auto end = v.find_first_of(" \t\n\r");
+        std::string_view token = (end == std::string_view::npos) ? v : v.substr(0, end);
+        auto [p, ec] = std::from_chars(token.data(), token.data() + token.size(), out);
+        if (ec != std::errc{} || p != token.data() + token.size())
+        {
+            return false;
+        }
+        v.remove_prefix(token.size());
+        return true;
+    };
+
+    if (!parse_next(sv, s.loadavg.load_1m) || !parse_next(sv, s.loadavg.load_5m) ||
+        !parse_next(sv, s.loadavg.load_15m))
     {
         throw std::runtime_error("malformed loadavg");
     }
