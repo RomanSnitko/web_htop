@@ -11,6 +11,8 @@ struct HttpRequest
 {
     unsigned status{200};
     std::string target;
+    std::string path;
+    std::string query;
 };
 
 [[nodiscard]] HttpRequest ParseHttpRequest(std::string_view text);

@@ -414,19 +414,19 @@ std::string Reactor::Route(std::string_view text)
     }
     auto latest = state_.Load();
 
-    if (request.target == "/health")
+    if (request.path == "/health")
     {
         return HttpResponse(200, R"({"status":"alive","protocol_version":2})");
     }
-    if (request.target == "/diagnostics")
+    if (request.path == "/diagnostics")
     {
         return HttpResponse(200, Diagnostics(false));
     }
-    if (request.target == "/exporter")
+    if (request.path == "/exporter")
     {
         return HttpResponse(200, Diagnostics(true), "text/plain; version=0.0.4");
     }
-    if (request.target == "/ready")
+    if (request.path == "/ready")
     {
         bool ready = latest && Clock::now() - latest->published_at < 3 * config_.poll_interval;
 
@@ -444,7 +444,7 @@ std::string Reactor::Route(std::string_view text)
         return HttpResponse(ready ? 200 : 503,
                             ready ? R"({"status":"ready"})" : R"({"status":"degraded"})");
     }
-    if (request.target != "/metrics" && request.target != "/processes")
+    if (request.path != "/metrics" && request.path != "/processes")
     {
         return HttpResponse(404, R"({"error":"not_found"})");
     }
@@ -452,8 +452,7 @@ std::string Reactor::Route(std::string_view text)
     {
         return HttpResponse(503, R"({"error":"warming_up"})");
     }
-    return HttpResponse(200,
-                        request.target == "/metrics" ? *latest->json : *latest->processes_json);
+    return HttpResponse(200, request.path == "/metrics" ? *latest->json : *latest->processes_json);
 }
 
 void Reactor::Run()
